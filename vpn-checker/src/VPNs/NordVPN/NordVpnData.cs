@@ -2,30 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace VpnChecker;
 
-/*
-Example:
-{
-    "coordinates": {
-        "latitude": 12.3456,
-        "longitude": -12.3456
-    },
-    "ip": "123.45.678.901",
-    "isp": "Packethub",
-    "host": {
-        "ip_address": "123.45.678.901",
-        "prefix_len": 19
-    },
-    "status": true,
-    "country": "Country Name",
-    "region": "Region Name",
-    "city": "City Name",
-    "location": "Country Name, Region Name, City Name",
-    "area_code": "12345",
-    "country_code": "XX"
-}
-*/
-
-public class NordVpn
+public class NordVpnData
 {
     public const string URL = "https://nordvpn.com/wp-admin/admin-ajax.php?action=get_user_info_data";
 
@@ -37,6 +14,7 @@ public class NordVpn
     public string? ISP { get; set; }
     [JsonPropertyName("host")]
     public NordVpnHost? Host { get; set; }
+    // This is the property that tells you if your public IP address belongs to NordVPN or not.
     [JsonPropertyName("status")]
     public bool Status { get; set; }
     [JsonPropertyName("country")]
@@ -67,3 +45,26 @@ public class NordVpn
         public int PrefixLength { get; set; }
     }
 }
+
+/*
+Example:
+{
+    "coordinates": {
+        "latitude": 12.3456,
+        "longitude": -12.3456
+    },
+    "ip": "123.45.678.901",
+    "isp": "Packethub",
+    "host": {
+        "ip_address": "123.45.678.901",
+        "prefix_len": 19
+    },
+    "status": true,
+    "country": "Country Name",
+    "region": "Region Name",
+    "city": "City Name",
+    "location": "Country Name, Region Name, City Name",
+    "area_code": "12345",
+    "country_code": "XX"
+}
+*/
